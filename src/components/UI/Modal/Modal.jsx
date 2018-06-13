@@ -1,12 +1,12 @@
 import React from 'react'
 import classes  from './Modal.css'
-import Aux from './../../../hoc/Auxiliary'
+import Aux from '../../../hoc/Auxiliary'
 import BackDrop from './../BackDrop/BackDrop'
 
 const modal = (props) => (
    <Aux> 
       <BackDrop show={props.show}
-                  modalClosed={props.modalClosed}/>
+                  closed={props.closed}/>
       <div 
          className={classes.Modal}
          style={{
