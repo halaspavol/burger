@@ -1,21 +1,33 @@
 import React from 'react'
 import classes  from './Modal.css'
-import Aux from './../../../hoc/Auxiliary'
+import Aux from './../../../hoc/Auxiliary/Auxiliary'
 import BackDrop from './../BackDrop/BackDrop'
 
-const modal = (props) => (
-   <Aux> 
-      <BackDrop show={props.show}
-                  closed={props.closed}/>
-      <div 
-         className={classes.Modal}
-         style={{
-            transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-            opacity: props.show ? '1' : '0'
-         }}>
-         {props.children}
-      </div>
-   </Aux>   
-)
+class Modal extends React.Component {
+   shouldComponentUpdate (nextProps, nextState) {
+      return nextProps.show !== this.props.show
+   }
 
-export default modal
+   componentWillUpdate() {
+      console.log('[Modal] Willupdate')
+   }
+
+   render() {
+      return(
+         <Aux>
+            <BackDrop show={this.props.show}
+               closed={this.props.closed} />
+            <div
+               className={classes.Modal}
+               style={{
+                  transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                  opacity: this.props.show ? '1' : '0'
+               }}>
+               {this.props.children}
+            </div>
+         </Aux>
+      )
+   }
+}
+
+export default Modal
